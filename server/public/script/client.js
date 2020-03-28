@@ -24,32 +24,21 @@ function getInput() {
   };
   if (mathematical_operation === "add") {
     numberInput.operation_sign = "+";
-    // numberInput.number_output = numberInput.number_one + numberInput.number_two;
   } else if (mathematical_operation === "subtract") {
     numberInput.operation_sign = "-";
-    // numberInput.number_output = numberInput.number_one - numberInput.number_two;
   } else if (mathematical_operation === "multiply") {
     numberInput.operation_sign = "*";
-    // numberInput.number_output = numberInput.number_one * numberInput.number_two;
   } else if (mathematical_operation === "divide") {
     numberInput.operation_sign = "/";
-    // numberInput.number_output = numberInput.number_one / numberInput.number_two;
   }
-  // console.log(`output: ${number_output}`);
-  // console.log(
-  //   `${numberInput.number_one} ${mathematical_operation} ${numberInput.number_two}`
-  // );
-  // console.log(numberInput.operation_sign);
-  // console.log(numberInput);
 
-  // saveOutput(number_output);
   saveInput(numberInput);
 }
 
 function saveInput(input) {
   $.ajax({
     method: "POST",
-    url: "/numberHistory",
+    url: "/numberhistory",
     data: input
   })
     .then(response => {
