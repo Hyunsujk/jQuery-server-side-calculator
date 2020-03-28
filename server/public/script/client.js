@@ -114,10 +114,11 @@ function render() {
     <li>${result.number_one}${result.operation_sign}${result.number_two}=${result.number_output}</li>
     `);
   }
-  console.log(history);
-  const last_index = history[history.length - 1];
-  console.log(last_index);
-  console.log(last_index.number_output);
-  //   $(".js-number-output").text(`
-  //   ${history[lastIndex].number_output}`);
+  // console.log(history);
+  const last_history = history[history.length - 1];
+  // console.log(last_history);
+  if (last_history != undefined) {
+    $(".js-number-output").text(`
+    ${last_history.number_output}`);
+  }
 }
