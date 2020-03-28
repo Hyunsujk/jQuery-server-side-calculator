@@ -1,6 +1,6 @@
 let history;
 let mathematical_operation = "";
-let number_output = 0;
+// let number_output = 0;
 let operation_sign;
 
 $(document).ready(init);
@@ -12,7 +12,7 @@ function init() {
   $(".js-btn-multiply").on("click", multiplyNumber);
   $(".js-btn-divide").on("click", divideNumber);
   $(".js-btn-equal").on("click", getInput);
-  // $(".js-btn-clear").on("click", emptyInputField);
+  $(".js-btn-clear").on("click", emptyInputField);
 }
 
 //
@@ -37,6 +37,12 @@ function getInput() {
   }
 
   saveInput(numberInput);
+}
+
+function emptyInputField() {
+  $(".js-number-input-1").val("");
+  $(".js-number-input-2").val("");
+  $(".js-number-output").text(`0`);
 }
 
 function addNumber() {
@@ -104,17 +110,14 @@ function render() {
   for (let i = 0; i < history.length; i++) {
     const result = history[i];
     console.log(result);
-    // const lastIndex = history.length - 1;
-    // $(".js-number-output").text(`
-    // <p>${result[lastIndex].number_output}</p>`);
-    //   $(".js-number-history").append(`
-    //     <li>${result.number_one}${result.operation_sign}${result.number_two}=${result.number_output}</li>
-    //     `);
+    $(".js-number-history").append(`
+    <li>${result.number_one}${result.operation_sign}${result.number_two}=${result.number_output}</li>
+    `);
   }
+  console.log(history);
+  const last_index = history[history.length - 1];
+  console.log(last_index);
+  console.log(last_index.number_output);
+  //   $(".js-number-output").text(`
+  //   ${history[lastIndex].number_output}`);
 }
-
-// function emptyInputField() {
-//   $(".js-number-input-1").val("");
-//   $(".js-number-input-2").val("");
-//   number_output = 0;
-// }
