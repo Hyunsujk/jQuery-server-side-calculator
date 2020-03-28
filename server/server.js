@@ -10,36 +10,27 @@ app.use(bodyParser.json());
 
 app.use(express.static("server/public"));
 
-let operator;
-let num1;
-let num2;
-let numOutput;
-
-app.get("/numberHistory", (req, res) => {
+app.get("/numberhistory", (req, res) => {
   res.send(numberHistory);
 });
 
-app.post("/numberHistory", (req, res) => {
+app.post("/numberhistory", (req, res) => {
   const numbers = req.body;
-  numberHistory.push(numbers);
-  console.log(numbers);
-  for (let i = 0; i < numberHistory.length; i++) {
-    operator = numberHistory[i].operation_sign;
-    num1 = parseFloat(numberHistory[i].number_one);
-    num2 = parseFloat(numberHistory[i].number_two);
-    numOutput = numberHistory[i].number_output;
-    console.log(operator, num1, num2);
-    if (operator == "+") {
-      numOutput = num1 + num2;
-    } else if (operator == "-") {
-      numOutput = num1 - num2;
-    } else if (operator == "*") {
-      numOutput = num1 * num2;
-    } else if (operator == "/") {
-      numOutput = num1 / num2;
-    }
-    console.log(numOutput);
+  const operator = numbers.operation_sign;
+  const num1 = parseFloat(numbers.number_one);
+  const num2 = parseFloat(numbers.number_two);
+  if (operator == "+") {
+    numbers.number_output = num1 + num2;
+  } else if (operator == "-") {
+    numbers.number_output = num1 - num2;
+  } else if (operator == "*") {
+    numbers.number_output = num1 * num2;
+  } else if (operator == "/") {
+    numbers.number_output = num1 / num2;
   }
+  console.log(numbers.number_output);
+  numberHistory.push(numbers);
+  console.log(numberHistory);
 
   res.sendStatus(201);
 });
