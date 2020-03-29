@@ -98,7 +98,62 @@ function render() {
 // stretch goal
 //---------------------------------
 
+let result = 0;
+let prevEntry = 0;
+let currentEntry = "0";
+let operation = null;
+
 function stretchGoalCalculator(event) {
   let btnPressed = event.target.innerHTML;
   console.log(btnPressed);
+
+  if (btnPressed == "C") {
+    result = 0;
+    currentEntry = "0";
+  } else if (btnPressed == ".") {
+    currentEntry += ".";
+  } else if (isNumber(btnPressed)) {
+    if (currentEntry == "0") {
+      currentEntry = btnPressed;
+    } else {
+      currentEntry = currentEntry + btnPressed;
+    }
+  } else if (isOperator(btnPressed)) {
+    prevEntry = parseFloat(currentEntry);
+    operation = btnPressed;
+    currentEntry = "";
+  } else if (btnPressed == "=") {
+    currentEntry = operate(prevEntry, currentEntry, operation);
+    operation = null;
+  }
+
+  updateScreen(currentEntry);
+}
+
+function updateScreen(displayValue) {
+  displayValue = displayValue.toString();
+  $(".screen").html(displayValue.substring(0, 10));
+}
+
+function isNumber(value) {
+  return !isNaN(value);
+}
+
+function isOperator(value) {
+  return value == "/" || value == "*" || value == "+" || value == "-";
+}
+
+function operate(a, b, operation) {
+  a = parseFloat(a);
+  b = parseFloat(b);
+  console.log(a, b, operation);
+  if (operation == "+") {
+    return a + b;
+  } else if (operation == "-") {
+    return a - b;
+  } else if (operation == "*") {
+    return a * b;
+  } else if (operation == "/") {
+    return a / b;
+  }
 }
