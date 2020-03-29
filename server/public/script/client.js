@@ -10,6 +10,11 @@ function init() {
   });
   $(".js-btn-equal").on("click", getInput);
   $(".js-btn-clear").on("click", emptyInputField);
+
+  //
+  // stretch goal
+  //---------------------------------
+  $(".js-btn-stretch").on("click", stretchGoalCalculator);
 }
 
 //
@@ -87,4 +92,13 @@ function render() {
     $(".js-number-output").text(`
     ${last_history.number_output}`);
   }
+}
+
+//
+// stretch goal
+//---------------------------------
+
+function stretchGoalCalculator(event) {
+  let btnPressed = event.target.innerHTML;
+  console.log(btnPressed);
 }
