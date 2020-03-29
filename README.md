@@ -20,3 +20,5 @@ Built with JavaScript, jQuery along with Ajax get and post method.
 - When user clicks 'C' button, the input fields will be cleared.
 
 ## Screenshot
+
+![ScreenShot](jQuery-server-side-calculator.png)
