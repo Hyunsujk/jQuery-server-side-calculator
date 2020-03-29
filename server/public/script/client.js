@@ -1,16 +1,13 @@
 let history;
-let mathematical_operation = "";
-// let number_output = 0;
-let operation_sign;
+let operator;
 
 $(document).ready(init);
 
 function init() {
   getHistory();
-  $(".js-btn-add").on("click", addNumber);
-  $(".js-btn-subtract").on("click", subtractNumber);
-  $(".js-btn-multiply").on("click", multiplyNumber);
-  $(".js-btn-divide").on("click", divideNumber);
+  $(".js-btn-operator").on("click", function() {
+    operator = event.target.innerHTML;
+  });
   $(".js-btn-equal").on("click", getInput);
   $(".js-btn-clear").on("click", emptyInputField);
 }
@@ -23,18 +20,9 @@ function getInput() {
   const numberInput = {
     number_one: parseInt($(".js-number-input-1").val()),
     number_two: parseInt($(".js-number-input-2").val()),
-    operation_sign: "",
+    operation_sign: operator,
     number_output: ""
   };
-  if (mathematical_operation === "add") {
-    numberInput.operation_sign = "+";
-  } else if (mathematical_operation === "subtract") {
-    numberInput.operation_sign = "-";
-  } else if (mathematical_operation === "multiply") {
-    numberInput.operation_sign = "*";
-  } else if (mathematical_operation === "divide") {
-    numberInput.operation_sign = "/";
-  }
 
   saveInput(numberInput);
 }
@@ -43,26 +31,6 @@ function emptyInputField() {
   $(".js-number-input-1").val("");
   $(".js-number-input-2").val("");
   $(".js-number-output").text(`0`);
-}
-
-function addNumber() {
-  mathematical_operation = "add";
-  console.log(mathematical_operation);
-}
-
-function subtractNumber() {
-  mathematical_operation = "subtract";
-  console.log(mathematical_operation);
-}
-
-function multiplyNumber() {
-  mathematical_operation = "multiply";
-  console.log(mathematical_operation);
-}
-
-function divideNumber() {
-  mathematical_operation = "divide";
-  console.log(mathematical_operation);
 }
 
 //
@@ -114,9 +82,7 @@ function render() {
     <li>${result.number_one}${result.operation_sign}${result.number_two}=${result.number_output}</li>
     `);
   }
-  // console.log(history);
   const last_history = history[history.length - 1];
-  // console.log(last_history);
   if (last_history != undefined) {
     $(".js-number-output").text(`
     ${last_history.number_output}`);
